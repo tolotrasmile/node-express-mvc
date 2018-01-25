@@ -3,7 +3,7 @@ import Todo from '../models/todo.model'
 class TodoController {
 
   /**
-   * Get all users
+   * Get all todos
    * @param request
    * @param response
    */
@@ -18,7 +18,7 @@ class TodoController {
   }
 
   /**
-   * Get user by id
+   * Get todo by id
    * @param request
    * @param response
    */
@@ -33,7 +33,7 @@ class TodoController {
   }
 
   /**
-   * Create a new user by id
+   * Create a new todo
    * @param request
    * @param response
    */
@@ -45,7 +45,7 @@ class TodoController {
   }
 
   /**
-   * Update user
+   * Update todo
    * @param request
    * @param response
    */

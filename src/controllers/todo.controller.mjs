@@ -9,12 +9,8 @@ class TodoController {
    */
   findAll(request, response) {
     Todo.find()
-      .then(todos => {
-        response.json(todos)
-      })
-      .catch(error => {
-        response.send(JSON.stringify(error))
-      })
+      .then(todos => { response.json(todos) })
+      .catch(error => { response.send(JSON.stringify(error)) })
   }
 
   /**
@@ -24,12 +20,8 @@ class TodoController {
    */
   findById(request, response) {
     Todo.findById(request.params.id)
-      .then((todo) => {
-        response.json(todo)
-      })
-      .catch(error => {
-        response.send(JSON.stringify(error))
-      })
+      .then((todo) => { response.json(todo) })
+      .catch(error => { response.send(JSON.stringify(error)) })
   }
 
   /**
@@ -38,9 +30,15 @@ class TodoController {
    * @param response
    */
   create(request, response) {
-    const todo = {title: 'My first todo', completed: false, userId: 1, date: new Date(), description: 'Description'}
+
+    const title = request.body.title
+    const userId = request.body.userId
+    const description = request.body.description
+
+    const todo = {title, userId, description, completed: false, date: new Date()}
+
     Todo.create(todo)
-      .then(() => response.send('Todo created'))
+      .then(() => response.json(todo))
       .catch((error) => response.send(JSON.stringify(error)))
   }
 
@@ -50,10 +48,9 @@ class TodoController {
    * @param response
    */
   update(request, response) {
-    throw new Exception('Method not implemented')
+    throw new Error('Method not implemented')
   }
 
 }
-
 
 export default new TodoController()

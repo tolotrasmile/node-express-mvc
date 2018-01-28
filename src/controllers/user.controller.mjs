@@ -9,12 +9,8 @@ class UserController {
    */
   getUsers(request, response) {
     User.find()
-      .then(users => {
-        response.json(users)
-      })
-      .catch(error => {
-        response.send(JSON.stringify(error))
-      })
+      .then(users => { response.json(users)})
+      .catch(error => { response.send(JSON.stringify(error)) })
   }
 
   /**
@@ -24,12 +20,8 @@ class UserController {
    */
   getUserById(request, response) {
     User.findById(request.params.id)
-      .then((users) => {
-        response.json(users)
-      })
-      .catch(error => {
-        response.send(JSON.stringify(error))
-      })
+      .then((users) => { response.json(users) })
+      .catch(error => { response.send(JSON.stringify(error)) })
   }
 
   /**
@@ -40,12 +32,8 @@ class UserController {
   createUser(request, response) {
     const user = {username: 'Tolotra', password: 'toto'}
     User.create(user)
-      .then(() => {
-        response.json(request.body)
-      })
-      .catch(error => {
-        response.send(JSON.stringify(error))
-      })
+      .then(() => { response.json(request.body) })
+      .catch(error => { response.send(JSON.stringify(error)) })
   }
 
   /**
@@ -67,10 +55,23 @@ class UserController {
     } else {
       response.json({message: 'Parameter id is not set'})
     }
+  }
 
+  /**
+   * 
+   * @param request
+   * @param response
+   */
+  deleteUserById(request, response) {
+    User.remove({_id: request.params.id})
+      .then(() => {
+        response.json({message: `User deleted ${request.params.id}`})
+      })
+      .catch(error => {
+        response.send(JSON.stringify(error))
+      })
   }
 
 }
-
 
 export default new UserController()

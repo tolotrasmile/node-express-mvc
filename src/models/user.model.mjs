@@ -9,6 +9,14 @@ const userSchema = new mongoose.Schema({
   password: {
     required: true,
     type: String
+  },
+  created_at: {
+    default: new Date(),
+    type: Date
+  },
+  updated_at: {
+    default: new Date(),
+    type: Date
   }
 })
 
